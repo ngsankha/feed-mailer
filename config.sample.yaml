@@ -1,0 +1,8 @@
+to: you@email.com
+auth:
+  username: you@email.com
+  password: 'your password'
+feeds:
+  - https://sankhs.com/feed
+  - http://www.brendangregg.com/blog/rss.xml
+
