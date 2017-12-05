@@ -24,15 +24,20 @@ for feed in config['feeds']:
 	text_feed = ''
 	dates = []
 	for item in parsed_feed.entries:
+		usable_date = None
+		if 'published_parsed' in item:
+			usable_date = item.published_parsed
+		else:
+			usable_date = item.updated_parsed
 		if feed in state:
-			if state[feed] < item.published_parsed:
+			if state[feed] < usable_date:
 				text_feed += ("%s\n%s\n\n" % (item.title, item.link))
-				dates.append(item.published_parsed)
+				dates.append(usable_date)
 		else:
 			text_feed += ("%s\n%s\n\n" % (item.title, item.link))
-			dates.append(item.published_parsed)
+			dates.append(usable_date)
 
-    if len(dates) != 0:
+	if len(dates) != 0:
 		state[feed] = max(dates)
 	if text_feed != "":
 		body += (parsed_feed.feed.title + "\n")
