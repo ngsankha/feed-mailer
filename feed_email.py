@@ -11,7 +11,7 @@ from email.mime.text import MIMEText
 STATE_FILE  = 'feed_email.state'
 CONFIG_FILE = 'config.yaml'
 
-config = yaml.load(open(CONFIG_FILE, 'r'))
+config = yaml.load(open(CONFIG_FILE, 'r'), Loader=yaml.FullLoader)
 state = {}
 body = ''
 
